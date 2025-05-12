@@ -10,11 +10,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function ModeToggle() {
   const { setTheme, theme } = useTheme()
   const [hovering, setHovering] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full" disabled></Button>
+  }
 
   return (
     <DropdownMenu>

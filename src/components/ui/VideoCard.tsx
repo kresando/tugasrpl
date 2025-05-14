@@ -37,9 +37,15 @@ export interface VideoCardProps {
   }
   className?: string
   variant?: 'default' | 'featured'
+  priority?: boolean
 }
 
-export function VideoCard({ video, className, variant = 'default' }: VideoCardProps) {
+export function VideoCard({
+  video,
+  className,
+  variant = 'default',
+  priority = false,
+}: VideoCardProps) {
   // Tentukan URL thumbnail
   let thumbnailUrl = '/placeholder.jpg'
   let thumbnailAlt = (video.title || 'Video thumbnail') as string
@@ -83,7 +89,7 @@ export function VideoCard({ video, className, variant = 'default' }: VideoCardPr
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover transition-transform duration-500 group-hover:scale-110"
-            unoptimized={true}
+            priority={priority}
           />
 
           {/* Play Button Overlay */}
@@ -108,9 +114,9 @@ export function VideoCard({ video, className, variant = 'default' }: VideoCardPr
         {/* Card Content */}
         <div className="p-3 sm:p-4">
           {/* Title */}
-          <h3 className="font-bold text-sm sm:text-base mb-1 line-clamp-2 group-hover:text-primary transition-colors">
+          <div className="font-bold text-sm sm:text-base mb-1 line-clamp-2 group-hover:text-primary transition-colors">
             {video.title || 'Tanpa Judul'}
-          </h3>
+          </div>
 
           {/* Views */}
           {video.views !== undefined && video.views !== null && (

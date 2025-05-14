@@ -153,12 +153,12 @@ body {
 /* Perbaikan hover pada dropdown */
 .navigation-menu-link {
   @apply text-foreground hover:bg-accent hover:text-accent-foreground;
-    }
+}
 
 /* Perbaikan input pencarian */
 input {
   color: var(--foreground);
-    }
+}
 
 /* Perbaikan tampilan mode terang/gelap icon */
 .theme-toggle-icon {

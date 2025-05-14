@@ -9,9 +9,11 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 interface PaginationProps {
   currentPage: number
   totalPages: number
+  className?: string // Tambahkan prop className opsional
 }
 
-export function Pagination({ currentPage, totalPages }: PaginationProps) {
+// Ganti nama komponen menjadi PaginationControls
+export function PaginationControls({ currentPage, totalPages, className }: PaginationProps) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -27,7 +29,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
 
   // Define the range of page numbers to display
   const pagesToShow = []
-  const delta = 2 // Number of pages to show around the current page
+  const delta = 1 // Number of pages to show around the current page (sesuaikan jika perlu, 1 akan memberi [prev, 1, ..., curr-1, curr, curr+1, ..., total, next])
 
   // Always show first page
   pagesToShow.push(1)
@@ -60,14 +62,18 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
   return (
     <nav
       aria-label="Pagination"
-      className="flex items-center justify-center space-x-2 mt-8 sm:mt-12"
+      // Gabungkan className default dengan prop className
+      className={cn(
+        'flex items-center justify-center space-x-1 sm:space-x-2 mt-8 sm:mt-12',
+        className,
+      )}
     >
       {/* Previous Button */}
       <Button
         asChild
         variant="outline"
         size="icon"
-        className={cn('h-9 w-9 p-0', currentPage <= 1 && 'pointer-events-none opacity-50')}
+        className={cn('h-9 w-9', currentPage <= 1 && 'pointer-events-none opacity-50')}
         disabled={currentPage <= 1}
       >
         <Link href={createPageURL(currentPage - 1)} aria-label="Go to previous page">
@@ -81,16 +87,23 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
           <Button
             key={page}
             asChild
-            variant={currentPage === page ? 'default' : 'outline'}
+            variant={currentPage === page ? 'destructive' : 'outline'} // Gunakan 'destructive' untuk halaman aktif
             size="icon"
-            className="h-9 w-9 p-0"
+            className="h-9 w-9"
           >
-            <Link href={createPageURL(page)} aria-label={`Go to page ${page}`}>
+            <Link
+              href={createPageURL(page)}
+              aria-current={currentPage === page ? 'page' : undefined}
+              aria-label={`Go to page ${page}`}
+            >
               {page}
             </Link>
           </Button>
         ) : (
-          <span key={`ellipsis-${index}`} className="flex h-9 w-9 items-center justify-center">
+          <span
+            key={`ellipsis-${index}`}
+            className="flex h-9 w-9 items-center justify-center text-muted-foreground"
+          >
             ...
           </span>
         ),
@@ -101,7 +114,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
         asChild
         variant="outline"
         size="icon"
-        className={cn('h-9 w-9 p-0', currentPage >= totalPages && 'pointer-events-none opacity-50')}
+        className={cn('h-9 w-9', currentPage >= totalPages && 'pointer-events-none opacity-50')}
         disabled={currentPage >= totalPages}
       >
         <Link href={createPageURL(currentPage + 1)} aria-label="Go to next page">

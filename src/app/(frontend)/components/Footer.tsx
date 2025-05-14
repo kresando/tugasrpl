@@ -46,36 +46,6 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-lg font-bold">Legal</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link
-                  href="/privasi"
-                  className="text-muted-foreground hover:text-foreground hover:underline transition-colors"
-                >
-                  Kebijakan Privasi
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/dmca"
-                  className="text-muted-foreground hover:text-foreground hover:underline transition-colors"
-                >
-                  DMCA
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/2257"
-                  className="text-muted-foreground hover:text-foreground hover:underline transition-colors"
-                >
-                  2257 Statement
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
             <h3 className="mb-4 text-lg font-bold">Hubungi Kami</h3>
             <ul className="space-y-3 text-sm">
               <li>

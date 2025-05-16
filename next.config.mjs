@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: 'layar18.top',
         pathname: '/api/media/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.layar18.top',
+        pathname: '/api/media/**',
+      },
     ],
   },
 }

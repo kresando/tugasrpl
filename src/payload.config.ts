@@ -37,6 +37,9 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   sharp,
+  routes: {
+    admin: '/ueskonz050206',
+  },
   plugins: [
     payloadCloudPlugin(),
     seoPlugin({

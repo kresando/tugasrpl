@@ -6,7 +6,6 @@ const nextConfig = {
     serverComponentsExternalPackages: ['sharp'],
   },
   images: {
-    domains: ['localhost'],
     remotePatterns: [
       {
         protocol: 'http',
@@ -16,7 +15,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '**.layar18.com',
+        hostname: 'layar18.top',
         pathname: '/media/**',
       },
     ],

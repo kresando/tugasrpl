@@ -66,6 +66,8 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       images: [ogImageUrl],
+      site: '@YouKnowIt38',
+      creator: '@YouKnowIt38',
     },
   }
 }

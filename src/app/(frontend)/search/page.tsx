@@ -57,19 +57,68 @@ export async function generateMetadata({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }): Promise<Metadata> {
   const params = await searchParams
-  const query = params?.q?.[0] || params?.q || '' // Handle string | string[]
-  const title = query ? `Hasil Pencarian untuk "${query}" - Layar18` : 'Cari Video - Layar18'
-  const description = query
-    ? `Temukan video terkait "${query}" di Layar18.`
-    : 'Temukan video dewasa yang ingin kamu tonton di Layar18.'
+  // Pastikan query adalah string tunggal untuk canonical dan keywords
+  let singleQuery: string = ''
+  if (typeof params?.q === 'string') {
+    singleQuery = params.q
+  } else if (Array.isArray(params?.q) && params.q.length > 0) {
+    singleQuery = params.q[0]
+  }
+
+  const pageTitle = singleQuery
+    ? `Hasil Pencarian untuk "${singleQuery}" - Layar18`
+    : 'Cari Video - Layar18'
+  const pageDescription = singleQuery
+    ? `Temukan video terkait pencarian "${singleQuery}" di Layar18. Streaming konten dewasa, video viral, dan lainnya.`
+    : 'Gunakan fitur pencarian Layar18 untuk menemukan video dewasa, bokep viral, JAV sub Indo, dan konten favorit lainnya dengan cepat.'
+
+  const canonicalUrl = singleQuery
+    ? `${SERVER_URL}/search?q=${encodeURIComponent(singleQuery)}`
+    : `${SERVER_URL}/search`
+
+  const ogImageUrl = `${SERVER_URL}/assets/seo/logo-og.webp` // Default OG image
 
   return {
-    title,
-    description,
-    // Tambahkan canonical URL jika diperlukan
-    // alternates: {
-    //   canonical: `/search?q=${encodeURIComponent(query)}`,
-    // },
+    title: pageTitle,
+    description: pageDescription,
+    keywords: singleQuery
+      ? [
+          `hasil pencarian ${singleQuery}`,
+          singleQuery,
+          `cari ${singleQuery}`,
+          `video ${singleQuery}`,
+          `Layar18 ${singleQuery}`,
+          'pencarian video dewasa',
+        ]
+      : ['cari video dewasa', 'search Layar18', 'temukan video bokep', 'pencarian JAV sub Indo'],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: singleQuery ? 'index, follow' : 'noindex, follow', // Noindex jika query kosong
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      url: canonicalUrl,
+      siteName: 'Layar18',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: 'Layar18 Search Results',
+        },
+      ],
+      locale: 'id_ID',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDescription,
+      images: [ogImageUrl],
+      site: '@YouKnowIt38',
+      creator: '@YouKnowIt38',
+    },
   }
 }
 

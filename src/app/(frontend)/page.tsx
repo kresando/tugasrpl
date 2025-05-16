@@ -69,6 +69,8 @@ export async function generateMetadata(): Promise<Metadata> {
       title: title,
       description: description,
       images: [twitterImageUrl],
+      site: '@YouKnowIt38',
+      creator: '@YouKnowIt38',
     },
   }
 }
@@ -122,9 +124,9 @@ const getVideos = unstable_cache(
       return []
     }
   },
-  ['homeVideos'],
+  ['homeVideos_v2_tagged'],
   {
-    tags: ['videos', 'home'],
+    tags: ['videos_collection', 'homepage_videos_list'],
     revalidate: 300,
   },
 )
@@ -224,8 +226,8 @@ export default async function Home() {
             <Link
               href="/category/bokep-indo"
               className="group flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium 
-              bg-background/80 text-foreground backdrop-blur-sm transition-all duration-200
-              hover:bg-accent/30 hover:shadow-[2px_2px_5px_rgba(0,0,0,0.03),-2px_-2px_5px_rgba(255,255,255,0.03)]"
+            bg-background/80 text-foreground backdrop-blur-sm transition-all duration-200
+            hover:bg-accent/30 hover:shadow-[2px_2px_5px_rgba(0,0,0,0.03),-2px_-2px_5px_rgba(255,255,255,0.03)]"
               aria-label="Lihat semua video kategori Bokep Indo"
             >
               <span>Lihat Semua</span>
@@ -252,8 +254,8 @@ export default async function Home() {
             <Link
               href="/category/jav-sub-indo"
               className="group flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium 
-              bg-background/80 text-foreground backdrop-blur-sm transition-all duration-200
-              hover:bg-accent/30 hover:shadow-[2px_2px_5px_rgba(0,0,0,0.03),-2px_-2px_5px_rgba(255,255,255,0.03)]"
+            bg-background/80 text-foreground backdrop-blur-sm transition-all duration-200
+            hover:bg-accent/30 hover:shadow-[2px_2px_5px_rgba(0,0,0,0.03),-2px_-2px_5px_rgba(255,255,255,0.03)]"
               aria-label="Lihat semua video kategori JAV Sub Indo"
             >
               <span>Lihat Semua</span>

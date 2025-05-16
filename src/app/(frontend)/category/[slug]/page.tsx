@@ -161,6 +161,8 @@ export async function generateMetadata({
       title: pageTitle,
       description: pageDescription,
       images: [twitterImageUrl],
+      site: '@YouKnowIt38',
+      creator: '@YouKnowIt38',
     },
   }
 }
@@ -244,10 +246,10 @@ const getVideosByCategory = unstable_cache(
       return { videos: [], totalPages: 0, totalDocs: 0 }
     }
   },
-  ['videosByCategory_detail_v5'],
+  ['videosByCategory_detail_v6_revalidate_tag'],
   {
-    tags: ['videos_collection', 'videosByCategory_detail'],
-    revalidate: 600,
+    tags: ['videos_collection', 'category_videos_list'],
+    revalidate: 3600,
   },
 )
 

@@ -148,6 +148,8 @@ export async function generateMetadata({
       title: pageTitle,
       description: pageDescription,
       images: [twitterImageUrl],
+      site: '@YouKnowIt38',
+      creator: '@YouKnowIt38',
     },
   }
 }

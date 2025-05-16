@@ -255,9 +255,13 @@ export interface Video {
    */
   linkEmbed: string;
   /**
-   * Format: mm:ss atau hh:mm:ss
+   * Format: mm:ss atau hh:mm:ss. Contoh: 12:35 atau 01:12:35
    */
   duration: string;
+  /**
+   * Durasi dalam detik, dihitung otomatis dari field Durasi. Akan terisi setelah disimpan.
+   */
+  durationInSeconds?: number | null;
   /**
    * Jumlah tayangan (dapat diedit manual & diperbarui otomatis)
    */
@@ -462,6 +466,7 @@ export interface VideosSelect<T extends boolean = true> {
   thumbnail?: T;
   linkEmbed?: T;
   duration?: T;
+  durationInSeconds?: T;
   views?: T;
   description?: T;
   status?: T;

@@ -31,6 +31,8 @@ export const metadata = {
     title: 'Layar18 - Streaming Video Dewasa',
     description: 'Platform streaming video dewasa terbaik dan terlengkap di Indonesia',
     images: ['https://layar18.com/og-image.jpg'],
+    site: '@YouKnowIt38',
+    creator: '@YouKnowIt38',
   },
   robots: {
     index: true,
